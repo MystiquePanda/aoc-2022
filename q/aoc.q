@@ -45,11 +45,124 @@ day_6:{[input]
  0N!"Part Two: ",string 14+min where 14={count distinct x} each 14#/:(til count f)_\: f;
  }
 
+day_7:{[input]
+ f:1_ read0  hsym `$input;
+ root:([p:enlist -1;n:enlist `$"/"]c:enlist 1b;t:enlist `d;s:enlist 0f);
+ r:root {$["$"<>first y;x,([p:exec i from x where c=1b;n:(),`$last " "vs y]c:(),0b;t:enlist `f`d "dir"~3#y;s:enlist $["dir"~3#y;0;"J"$first " " vs y]);"cd"~ 2 # 2_ y;[parent:first $[".."~last " " vs y;exec p from x where c=1b;exec i from x where p in (exec i from x where c=1b), n=`$last " " vs y];update c:parent=i from x];x]}/ f;
+ r:0!update i:i from r;
+ r:{x lj select sum s by i:p from x where 0=({sum 0=x};s) fby p } over r;
+ 0N!"Part One: ",string exec sum s from r where s <= 100000, t=`d;
+ 0N!"Part Two: ",string first asc exec s from r where t=`d, s >= 30000000-first exec 70000000-s from r where n=`$"/";
+ }
+
+day_8:{[input]
+ f:read0  hsym `$input;
+ 0N!"Part One: ";
+ 0N!"Part Two: ";
+ }
+
+day_9:{[input]
+ f:read0  hsym `$input;
+ 0N!"Part One: ";
+ 0N!"Part Two: ";
+ }
+
+day_10:{[input]
+ f:read0  hsym `$input;
+ 0N!"Part One: ";
+ 0N!"Part Two: ";
+ }
+
+day_11:{[input]
+ f:read0  hsym `$input;
+ 0N!"Part One: ";
+ 0N!"Part Two: ";
+ }
+
+day_12:{[input]
+ f:read0  hsym `$input;
+ 0N!"Part One: ";
+ 0N!"Part Two: ";
+ }
+
+day_13:{[input]
+ f:read0  hsym `$input;
+ 0N!"Part One: ";
+ 0N!"Part Two: ";
+ }
+
+day_14:{[input]
+ f:read0  hsym `$input;
+ 0N!"Part One: ";
+ 0N!"Part Two: ";
+ }
+
+day_15:{[input]
+ f:read0  hsym `$input;
+ 0N!"Part One: ";
+ 0N!"Part Two: ";
+ }
+
+day_16:{[input]
+ f:read0  hsym `$input;
+ 0N!"Part One: ";
+ 0N!"Part Two: ";
+ }
+
+day_17:{[input]
+ f:read0  hsym `$input;
+ 0N!"Part One: ";
+ 0N!"Part Two: ";
+ }
+
+day_18:{[input]
+ f:read0  hsym `$input;
+ 0N!"Part One: ";
+ 0N!"Part Two: ";
+ }
+
+day_19:{[input]
+ f:read0  hsym `$input;
+ 0N!"Part One: ";
+ 0N!"Part Two: ";
+ }
+
+day_20:{[input]
+ f:read0  hsym `$input;
+ 0N!"Part One: ";
+ 0N!"Part Two: ";
+ }
+
+day_21:{[input]
+ f:read0  hsym `$input;
+ 0N!"Part One: ";
+ 0N!"Part Two: ";
+ }
+
+day_22:{[input]
+ f:read0  hsym `$input;
+ 0N!"Part One: ";
+ 0N!"Part Two: ";
+ }
+
+day_23:{[input]
+ f:read0  hsym `$input;
+ 0N!"Part One: ";
+ 0N!"Part Two: ";
+ }
+
+day_24:{[input]
+ f:read0  hsym `$input;
+ 0N!"Part One: ";
+ 0N!"Part Two: ";
+ }
+
+
 "*************************************************************"
 "******************** advent of code 2022 ********************"
 "*************************************************************"
 
-TODAY:6;
+TODAY:7;
 SKIP:();
 run:{
  0N!(x#"*")," Day ",sx:string x;
