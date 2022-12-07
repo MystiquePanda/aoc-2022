@@ -29,13 +29,27 @@ day_4:{[input]
  0N!"Part Two: ",string count where 0<{count (inter). p:{(-1*1+x[1]-x[0])#til x[1]}each "I"$"-" vs/: "," vs x}each f;
  }
 
+day_5:{[input]
+ f:read0  hsym `$input;
+ b:(1+til count c)!c:(trim each c) where 0<sum each not null c:flip -1_/: 1_/: ssr[;"[][]";" "] each (-1+f?"") # f;
+ i:"I"$","vs/:{ssr[ssr[5_ x;" from ";","];" to ";","]} each (1+f?"") _ f;
+ r:b{m:reverse y[0]#x[y[1]];x[y[1]]:y[0] _ x[y[1]];x[y[2]]:m,x[y[2]];x}/i;
+ 0N!"Part One: ",raze first each value r;
+ r:b{m:y[0]#x[y[1]];x[y[1]]:y[0] _ x[y[1]];x[y[2]]:m,x[y[2]];x}/i;
+ 0N!"Part Two: ",raze first each value r;
+ }
 
+day_6:{[input]
+ f:raze read0  hsym `$input;
+ 0N!"Part One: ",string 4+min where 4={count distinct x} each 4#/:(til count f)_\: f;
+ 0N!"Part Two: ",string 14+min where 14={count distinct x} each 14#/:(til count f)_\: f;
+ }
 
 "*************************************************************"
 "******************** advent of code 2022 ********************"
 "*************************************************************"
 
-TODAY:4;
+TODAY:6;
 SKIP:();
 run:{
  0N!(x#"*")," Day ",sx:string x;
