@@ -56,9 +56,12 @@ day_7:{[input]
  }
 
 day_8:{[input]
- f:read0  hsym `$input;
- 0N!"Part One: ";
- 0N!"Part Two: ";
+ f:"I"$/:/:read0  hsym `$input;
+ d:count f;
+ inner_visible:sum {1 <= sum (x . y) > max each x ./:/: .sh.nsew_edge .\: y,count x}[f;] each p cross p:1+til d-2;
+ 0N!"Part One: ",string (-4+d*4) + inner_visible;
+ ss_map:{(*)over {1+min where (-1_x),1b }each v:(x . y) <=/: x ./:/: .sh.nsew_edge .\: y,count x}[f;] each p cross p:1+til d-2;
+ 0N!"Part Two: ",string max ss_map;
  }
 
 day_9:{[input]
@@ -162,7 +165,7 @@ day_24:{[input]
 "******************** advent of code 2022 ********************"
 "*************************************************************"
 
-TODAY:7;
+TODAY:1+.z.D - 2022.12.01;
 SKIP:();
 run:{
  0N!(x#"*")," Day ",sx:string x;
