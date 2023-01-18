@@ -65,26 +65,51 @@ day_8:{[input]
  }
 
 day_9:{[input]
- f:read0  hsym `$input;
- 0N!"Part One: ";
- 0N!"Part Two: ";
+ f:flip " " vs/: read0  hsym `$input;
+ p:raze {x[1]#x[0]}each flip (`$first f;"I"$last f);
+ m:(`R`U`L`D)!({(x 0;1+x 1)};{(1+x 0;x 1)};{(x 0;-1+x 1)};{(-1+x 0;x 1)});
+ hp:(0;0){x[z] y}[m;]\p;
+ tm:{(0;0) {$[(11b~0<abs c)&0<sum 1<abs c:y-t:x;t+signum `long$c;t+(signum c)*1<abs c]}\x};
+ 0N!"Part One: ",string count distinct tm hp;
+ 0N!"Part Two: ",string count distinct 9 tm/hp;
  }
 
 day_10:{[input]
  f:read0  hsym `$input;
- 0N!"Part One: ";
+ a:sums 1, 1_ 0^"I"$/:raze " " vs/: f;
+ i:20,20+/:40*1+til ceiling (-20+count a) div 40;
+ 0N!"Part One: ",string sum i*a@i-2;
  0N!"Part Two: ";
+ 0N!/: 40 cut {".#" (x[0] mod 40) within (x[1]-1;x[1]+1)}each ((til 1+count a)),'(a[0]),a
  }
 
 day_11:{[input]
  f:read0  hsym `$input;
- 0N!"Part One: ";
- 0N!"Part Two: ";
+ b:raze {([monkey:(),x];items:enlist trim each "," vs last ":" vs y[1];ops:enlist last "=" vs y[2];test:(),"I"$last "by " vs y[3];p:(),"I"$last "monkey " vs y[4];f:(),"I"$last "monkey " vs y[5];tc:0)}./: flip (til count m;m:7 cut f);
+ mr:{[m;r]if[m=count r;:r];wl:{floor (eval parse x)%3} each ssr[r[m;`ops];"old";]each r[m;`items]; n:((r[m;`f];r[m;`p]) 0=wl mod r[m;`test];string wl);r:update items:" " vs/:trim each " " sv/: (items,'({x y}[n 1;]each group n 0)[monkey]) from oldr:r where monkey in n 0;r:update items:enlist (), tc:tc+'count each items from r where monkey=m;.z.s[m+1;r]};
+ 0N!"Part One: ",string (*). 2#desc exec tc from 20(mr[0;])/b;
+ mr:{[m;r]if[m=count r;:r];wl:{eval parse x} each ssr[r[m;`ops];"old";]each r[m;`items]; n:((r[m;`f];r[m;`p]) 0=wl mod r[m;`test];string wl);r:update items:" " vs/:trim each " " sv/: (items,'({x y}[n 1;]each group n 0)[monkey]) from oldr:r where monkey in n 0;r:update items:enlist (), tc:tc+'count each items from r where monkey=m;.z.s[m+1;r]};
+
+ /-mr:{[m;r]if[m=count r;:r];wl:{eval parse x} each ssr[r[m;`ops];"old";]each r[m;`items]; n:((r[m;`f];r[m;`p]) 0=w_test;string (flip (wl;r[m;`test]))@' 0=w_test:wl mod r[m;`test]);r:update items:" " vs/:trim each " " sv/: (items,'({x y}[n 1;]each group n 0)[monkey]) from oldr:r where monkey in n 0;if[debug;abc];r:update items:enlist (), tc:tc+'count each items from r where monkey=m;.z.s[m+1;r]};
+
+ /-select monkey, tc from r:20(mr[0;])/r
+ /-select monkey, tc from r:1(mr[0;])/r
+
+
+ /-0N!"Part Two: ",string (*). 2#desc exec tc from 10000(mr[0;])/b;
  }
 
 day_12:{[input]
  f:read0  hsym `$input;
- 0N!"Part One: ";
+ m:1!flip `p`s!(`$"." sv/: string(til count f) cross (til count f 1);`int$/: raze f);
+ sp:exec p from m where s=`int$"S";
+ m:update s:`int$"a" from m where s=`int$"S";
+ m:update s:1+`int$"z" from m where s=`int$"E";
+ ppf:{[m;de;path]cp:"I"$"." vs string last path;if[m[last path][`s]=1+`int$"z";:path];n:exec path(,)/: p from m where p in (`$"." sv/: string .sh.nsew .\: cp),(not p in path), s in `int$(m[last path][`s];1+m[last path][`s]);$[0<count n;[r:.z.s[m;de;] each n;if[11h<>type first r;r:raze r];vc:r where 0<>count each r;$[0=count vc;:();:fr where (min l)=l:count each fr:vc]];:path]};
+ /-path:((`1.4);(`2.3);(`3.4);(`2.4))
+ /-pp:ppf[m;path]
+ pp:ppf[m;();sp];
+ 0N!"Part One: ",string -1+min count each pp;
  0N!"Part Two: ";
  }
 
